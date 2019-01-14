@@ -1,6 +1,6 @@
 {
-    "name": "rosamarsky/laravel-command-bus",
-    "version": "1.0.2",
+    "name": "tutorauk/laravel-command-bus",
+    "version": "1.0.3",
     "description": "Simple Command Bus for Laravel framework",
     "keywords": [
         "laravel",
@@ -20,7 +20,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Rosamarsky\\CommandBus\\CommandBusServiceProvider"
+                "TutoraUK\\CommandBus\\CommandBusServiceProvider"
             ]
         }
     },
@@ -36,12 +36,12 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Rosamarsky\\CommandBus\\": "src"
+            "TutoraUK\\CommandBus\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Rosamarsky\\CommandBus\\Tests\\": "tests"
+            "TutoraUK\\CommandBus\\Tests\\": "tests"
         }
     }
 }

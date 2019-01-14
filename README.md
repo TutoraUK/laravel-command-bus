@@ -3,13 +3,9 @@
 > Simple Command Bus for Laravel framework
 
 ## Installation
-    composer require rosamarsky/laravel-command-bus
+    composer require tutorauk/laravel-command-bus
     
 Add the Service Provider to the providers array in `config/app.php`
-
-```php
-Rosamarsky\CommandBus\CommandBusServiceProvider::class,
-```
 
 ## Example
 

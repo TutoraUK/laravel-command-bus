@@ -1,6 +1,6 @@
 <?php
 
-namespace Rosamarsky\CommandBus;
+namespace TutoraUK\CommandBus;
 
 class CommandBus
 {
