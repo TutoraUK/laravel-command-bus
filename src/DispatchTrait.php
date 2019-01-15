@@ -28,6 +28,7 @@ trait DispatchTrait
     /**
      * Marshal a command and dispatch it to its appropriate handler.
      *
+     * @deprecated Provides backward compatibility for old commands.
      * @param  mixed $command
      * @param  array $array
      * @return mixed
@@ -35,14 +36,13 @@ trait DispatchTrait
      */
     public function dispatchFromArray($command, array $array)
     {
-        $dispatcher = resolve(CommandBus::class);
-
-        return $dispatcher->execute($this->marshalFromArray($command, $array));
+        return $this->dispatchCommand($this->marshalFromArray($command, $array));
     }
 
     /**
      * Marshal a command and dispatch it to its appropriate handler.
      *
+     * @deprecated Provides backward compatibility for old commands.
      * @param  mixed $command
      * @param  \ArrayAccess $source
      * @param  array $extras
@@ -51,9 +51,7 @@ trait DispatchTrait
      */
     public function dispatchFrom($command, \ArrayAccess $source, array $extras = [])
     {
-        $dispatcher = resolve(CommandBus::class);
-
-        return $dispatcher->execute($this->marshal($command, $source, $extras));
+        return $this->dispatchCommand($this->marshal($command, $source, $extras));
     }
 
     /**
@@ -61,7 +59,7 @@ trait DispatchTrait
      *
      * @param  string $command
      * @param  array $array
-     * @return mixed
+     * @return Command
      * @throws \ReflectionException
      */
     protected function marshalFromArray($command, array $array)
@@ -75,7 +73,7 @@ trait DispatchTrait
      * @param  string $command
      * @param  \ArrayAccess $source
      * @param  array $extras
-     * @return mixed
+     * @return Command
      * @throws \ReflectionException
      */
     protected function marshal($command, \ArrayAccess $source, array $extras = [])
@@ -88,5 +86,19 @@ trait DispatchTrait
             }, $constructor->getParameters());
         }
         return $reflection->newInstanceArgs($injected);
+    }
+
+    /**
+     * Dispatches a command to the command bus
+     *
+     * @deprecated Provides backward compatibility for old commands.
+     * @param Command $command
+     * @return mixed
+     */
+    public function dispatchCommand(Command $command) {
+        /* @var $dispatcher CommandBus */
+        $dispatcher = resolve(CommandBus::class);
+
+        return $dispatcher->execute($command);
     }
 }
