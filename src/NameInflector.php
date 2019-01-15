@@ -12,6 +12,6 @@ class NameInflector implements Inflector
      */
     public function inflect(Command $command)
     {
-        return get_class($command) . 'Handler';
+        return str_replace('\Commands', '\Handlers\Commands', get_class($command)) . 'Handler';
     }
 }
