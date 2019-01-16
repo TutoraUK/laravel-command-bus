@@ -2,6 +2,8 @@
 
 namespace TutoraUK\CommandBus;
 
+use Illuminate\Support\Collection;
+
 trait DispatchTrait
 {
     /**
@@ -64,7 +66,7 @@ trait DispatchTrait
      */
     protected function marshalFromArray($command, array $array)
     {
-        return $this->marshal($command, new \Collection, $array);
+        return $this->marshal($command, new Collection(), $array);
     }
 
     /**
